@@ -1,0 +1,1693 @@
+Personaje ojo; 
+Personaje boca;
+Personaje oreja; 
+Personaje mano;
+Personaje cerebro;
+Personaje nariz; 
+
+
+Personaje j1;
+Personaje j2;
+
+boolean sel1= false, sel2 = false; 
+int x, y, r; 
+int pant;
+int display1, display2;
+int turno =1 ;
+
+
+
+
+void setup() {
+  size(1000, 500);
+  ojo = new Personaje(500, 200);
+  boca = new Personaje (600, 300);
+  oreja = new Personaje (600, 200);
+  mano = new Personaje (400, 200);
+  nariz = new Personaje(400,200);
+  cerebro = new Personaje (700, 300); 
+  
+}
+
+
+void draw() {
+
+  pantallas(); 
+  println(sel1 + "," + sel2 + "," + turno + "," + pant);
+  //println(mouseX + "," + mouseY);
+  
+  textAlign(CENTER, CENTER); 
+  textSize(16);
+  
+}
+
+
+
+void mouseReleased() {
+
+  
+  if (pant == 2) {
+    ataque();
+  }
+  
+  //j2 
+  
+  if ((pant == 1 && sel1 == true && sel2==false)) {
+    if ((mouseX>= 30) && (mouseX<= 380) && (mouseY> -177) && (mouseY<216)) {//rojo
+      j2 = ojo;
+      sel2 = true;
+      display2=1;
+    }
+  }
+
+   if ((pant == 1 && sel1 == true && sel2==false)) {
+   if ((mouseX>= 30) && (mouseX< 380) && (mouseY> 300) && (mouseY<=475)) { //naranja
+      j2 = boca;
+      sel2 = true;
+      display2=2;
+    }
+  }
+  
+   if ((pant == 1 && sel1 == true && sel2==false)) {
+   if ( (mouseX>= 384) && (mouseX< 677) && (mouseY> 275) && (mouseY<=475)) { //azul
+      j2 = oreja;
+      sel2 = true;
+      display2=3;
+    }
+  }
+
+
+ if ((pant == 1 && sel1 == true && sel2==false)) {
+   if ( (mouseX>= 408) && (mouseX< 762) && (mouseY> 30) && (mouseY<=281)) { //amarillo 
+      j2 = cerebro;
+      sel2 = true;
+      display2=4;
+    }
+  }
+
+
+ if ((pant == 1 && sel1 == true && sel2==false)) {
+   if ( (mouseX>= 727) && (mouseX<=973) && (mouseY>=308) && (mouseY<=475)) { //rosa
+      j2 = mano;
+      sel2 = true;
+      display2= 5;
+    }
+  }
+  
+  
+   if ((pant == 1 && sel1 == true && sel2==false)) {
+   if ( (mouseX>= 797) && (mouseX<= 973) && (mouseY> 30) && (mouseY<=291)) { //verde
+      j2 = nariz;
+      sel2 = true;
+      display2=6;
+    }
+  }
+
+
+
+//j1
+
+
+  if (pant == 1 && sel1 == false && sel2 == false) {
+    if ((mouseX>= 30) && (mouseX<= 380) && (mouseY> -177) && (mouseY<216)) { //rojo
+
+      j1 = ojo;
+      sel1 = true;
+      display1 =1;
+      //sel2 = false;
+    }
+  }
+
+  if (pant == 1 && sel1 == false && sel2 == false) {
+    if ((mouseX>= 30) && (mouseX< 380) && (mouseY> 300) && (mouseY<=475)) { //naranja
+
+      j1 = boca;
+      sel1 = true;
+      display1 = 2;
+      //sel2 = false;
+    }
+  }
+
+
+  if (pant == 1 && sel1 == false && sel2 == false) {
+    if ( (mouseX>= 384) && (mouseX< 677) && (mouseY> 275) && (mouseY<=475)) { //azul
+
+      j1 = oreja;
+      sel1 = true;
+      display1 = 3;
+      //sel2 = false;
+    }
+  }
+
+
+  if (pant == 1 && sel1 == false && sel2 == false) {
+    if ( (mouseX>= 408) && (mouseX< 762) && (mouseY> 30) && (mouseY<=281)) { //amarillo 
+
+      j1 = cerebro;
+      sel1 = true;
+      display1 =4;
+      //sel2 = false;
+    }
+  }
+
+
+  if (pant == 1 && sel1 == false && sel2 == false) {
+    if ( (mouseX>= 727) && (mouseX<=973) && (mouseY>=308) && (mouseY<=475)) { //rosa
+
+      j1 = mano;
+      sel1 = true;
+      display1 = 5;
+      //sel2 = false;
+    }
+  }
+
+
+  if (pant == 1 && sel1 == false && sel2 == false) {
+    if ( (mouseX>= 797) && (mouseX<= 973) && (mouseY> 30) && (mouseY<=291)) { //verde
+
+      j1 = nariz;
+      sel1 = true;
+      display1 = 6;
+      //sel2 = false;
+    }
+  }
+
+
+  if (pant <1) {
+    pant++;
+  }
+
+  if ((sel1 == true) && (sel2 == true) && (pant < 2)) {
+    pant = 2;
+  }
+
+
+  if (turno == 2 && pant ==2) {
+    turno = 1 ;
+  } else {
+    turno = 2;
+  }
+ 
+ /*   
+  if(pant ==3){
+  pant = 0;
+  }*/
+}
+
+
+
+
+
+void pantallas() {
+
+  switch(pant) {
+
+  case 0:
+    instrucciones();
+    break; 
+
+  case 1:
+    personaje();
+    break;
+
+  case 2:
+    batalla();
+    break;
+
+  case 3:
+    ganador();
+    break;
+
+  case 4:
+    pant = 0;
+    break;
+  }
+}
+
+
+
+void instrucciones() {
+
+
+  background(250, 255, 237);  
+  //fill(197,229,116);
+  fill(216, 237, 163);
+  noStroke();
+  beginShape();
+  vertex(1.3, 463.7);
+  vertex(41.3, 463.7);
+  vertex(41.3, 433.7);
+  vertex(56, 433.7);
+  vertex(56, 297);
+  vertex(64.7, 297);
+  vertex(64.7, 273);
+  vertex(89.4, 217.7);
+  vertex(114.1, 273.7);
+  vertex(114.1, 293);
+  vertex(128.8, 293);
+  vertex(128.8, 411.7);
+  vertex(135.5, 411.7);
+  vertex(135.5, 314.4);
+  vertex(202.8, 314.4);
+  vertex(202.8, 417.7);
+  vertex(211.5, 417.7);
+  vertex(211.5, 386.4);
+  vertex(229.5, 386.4);
+  vertex(229.5, 419);
+  vertex(234.2, 419);
+  vertex(234.2, 433.7);
+  vertex(240.9, 433.7);
+  vertex(240.9, 460.4);
+  vertex(248.9, 460.4);
+  vertex(248.9, 445.7);
+  vertex(276, 445.7);
+  vertex(276, 405);
+  vertex(301.3, 405);
+  vertex(301.3, 315);
+  vertex(418.6, 315);
+  vertex(418.6, 412.3);
+  vertex(452.6, 412.3);
+  vertex(452.6, 328.3);
+  vertex(499.3, 328.3);
+  vertex(499.3, 245.6);
+  vertex(516, 215);
+  vertex(516, 195);
+  vertex(536, 195);
+  vertex(536, 210.3);
+  vertex(550, 245.6);
+  vertex(550, 357.6);
+  vertex(557.3, 357.6);
+  vertex(557.3, 334.3);
+  vertex(563.3, 334.3);
+  vertex(563.3, 231);
+  vertex(569.3, 231);
+  vertex(569.3, 153.7);
+  vertex(572, 153.7);
+  vertex(572, 88.3);
+  vertex(575.3, 85);
+  vertex(575.3, 49);
+  vertex(582.6, 49);
+  vertex(582.6, 87);
+  vertex(587.3, 87);
+  vertex(587.3, 155);
+  vertex(591.3, 155);
+  vertex(591.3, 230.3);
+  vertex(598, 230.3);
+  vertex(598, 335);
+  vertex(603.3, 335);
+  vertex(603.3, 358.3);
+  vertex(610.6, 358.3);
+  vertex(610.6, 391.6);
+  vertex(622, 391.6);
+  vertex(622, 370.3);
+  vertex(640.7, 370.3);
+  vertex(640.7, 349.6);
+  vertex(698, 349.6);
+  vertex(698, 377);
+  vertex(710.7, 377);
+  vertex(710.7, 392.3);
+  vertex(703.4, 392.3);
+  vertex(703.4, 435);
+  vertex(744, 435);
+  vertex(744, 461.7);
+  vertex(752.7, 461.7);
+  vertex(752.7, 429.7);
+  vertex(769.4, 429.7);
+  vertex(769.4, 417);
+  vertex(777.4, 417);
+  vertex(777.4, 309);
+  vertex(826.7, 309);
+  vertex(826.7, 417);
+  vertex(835.4, 417);
+  vertex(835.4, 428.3);
+  vertex(846, 428.3);
+  vertex(846, 459.6);
+  vertex(874.7, 459.6);
+  vertex(874.7, 439);
+  vertex(910.7, 439);
+  vertex(910.7, 402.3);
+  vertex(916.7, 402.3);
+  vertex(916.7, 361.6);
+  vertex(970, 361.6);
+  vertex(970, 447);
+  vertex(977.3, 447);
+  vertex(977.3, 411);
+  vertex(1000.6, 411);
+  vertex(1000.6, 500.3);
+  vertex(0.7, 500.3);
+  bezierVertex(0.7, 500.3, 0, 462.3, 1.3, 463.7);
+  endShape();
+  beginShape();
+  vertex(889.5, 40);
+  bezierVertex(884.6, 40, 879.8, 40.7, 875.3, 41.9);
+  bezierVertex(896.9, 48.9, 912.6, 69.3, 912.6, 93.2);
+  bezierVertex(912.6, 118.1, 895.7, 139.1, 872.8, 145.3);
+  bezierVertex(878.1, 147, 883.7, 148, 889.5, 148);
+  bezierVertex(919.3, 148, 943.5, 123.8, 943.5, 94);
+  bezierVertex(943.5, 64.2, 919.4, 40, 889.5, 40);
+  endShape();
+
+
+  fill(104, 137, 22);
+  textSize(50);
+  text("DISCURSOS ARTÍSTICOS\n INCLUSIVOS\r\n\r\n\r\n\n", width/2, height/2);
+  textSize(18);
+  fill(100, 100, 100);
+  text("Un mundo en donde el arte está sometido a los parámetros visuales, auditivos y \n" +
+    "gustativos, el resto de los sentidos perceptivos han sido marginados.\n " + 
+    "Una lucha entre los sentidos populares y marginados \n " +
+    "nos llevará a revelar la verdad y descubrir nuevas oportunidades \n" +
+    "para la producción de discursos artísticos.", width/2, height/2+40);
+
+  textSize(20);
+  fill(104, 134, 30);
+  text("Presiona clic para continuar", width/2, height/2+200);
+}
+
+
+
+void personaje() {
+  background(255);
+  //noFill();
+  strokeWeight(3);
+
+
+  //1
+  beginShape();
+
+  if ( (mouseX>= 30) && (mouseX<= 380) && (mouseY> -177) && (mouseY<216)) { //rojo
+    stroke(0, 255, 0);
+  } else {
+    stroke(0);
+  } 
+  fill(255, 43, 0); 
+  vertex(29, 23);
+  vertex(381, 23);
+  vertex(352, 189);
+  vertex(28, 283);
+  vertex(29, 23);
+  endShape();
+
+  //2
+  beginShape();
+  // stroke(0);
+  if ( (mouseX>= 30) && (mouseX< 380) && (mouseY> 300) && (mouseY<=475)) { //naranja 
+    stroke(0, 0, 255);
+  } else {
+    stroke(0);
+  } 
+  fill(255, 153, 0); 
+  vertex(28, 302);
+  vertex(350, 209);
+  vertex(339, 259);
+  vertex(383, 368);
+  vertex(297, 398);
+  vertex(325, 460);
+  vertex(322, 475);
+  vertex(29, 475);
+  vertex(28, 302);
+  endShape();
+
+  //3
+  beginShape();
+  //stroke(0);
+  if ( (mouseX>= 408) && (mouseX< 762) && (mouseY> 30) && (mouseY<=281)) { //amarillo
+    stroke(0, 255, 255);
+  } else {
+    stroke(0);
+  } 
+  fill(255, 243, 0); 
+  vertex(405, 23);
+  vertex(792, 23);
+  vertex(744, 63);
+  vertex(801, 281);
+  vertex(365, 248);
+  vertex(405, 23);
+  endShape();
+
+  //4
+  beginShape();
+  //  stroke(0);
+  if ( (mouseX>= 384) && (mouseX< 677) && (mouseY> 275) && (mouseY<=475)) {//azul
+    stroke(100, 100, 255);
+  } else {
+    stroke(0);
+  } 
+  fill(0, 197, 255); 
+  vertex(364, 269);
+  vertex(704, 297);
+  vertex(652, 477);
+  vertex(341, 477);
+  vertex(345, 459);
+  vertex(322, 407);
+  vertex(407, 378);
+  vertex(364, 269);
+  endShape();
+
+  //5
+  beginShape();
+  // stroke(0);
+
+  if ( (mouseX>= 727) && (mouseX<=973) && (mouseY>=308) && (mouseY<=475)) {//rosa
+    stroke(200, 100, 255);
+  } else {
+    stroke(0);
+  } 
+  fill(255, 0, 47); 
+  vertex(726, 298);
+  vertex(973, 318);
+  vertex(973, 475);
+  vertex(677, 476);
+  vertex(726, 298);
+  endShape();
+
+  //6
+  beginShape();
+  //stroke(0);
+  if ( (mouseX>= 797) && (mouseX<= 973) && (mouseY> 30) && (mouseY<=291)) { //verde
+    stroke(100, 80, 255);
+  } else {
+    stroke(0);
+  } 
+  fill(190, 255, 0); 
+  vertex(825, 23);
+  vertex(973, 24);
+  vertex(974, 295);
+  vertex(824, 282);
+  vertex(768, 71);
+  vertex(825, 23);
+  endShape();
+}
+
+
+
+
+void batalla() {
+
+  // println(j1.vida + "," + j2.vida);
+  noStroke();
+  background(255);
+  pushMatrix();
+  fill(8, 189, 196);
+  //fill(32,172,175);
+  rect(0, 0, 1000, 500);
+  //fill(18,225,219);
+  fill(25, 215, 215);
+
+  //lados
+  triangle(width/2, height/2, 0, 0, 0, 166);
+  triangle(width/2, height/2, 0, 332, 0, 500);
+  triangle(width/2, height/2, 1000, 332, 1000, 500);
+  triangle(width/2, height/2, 1000, 0, 1000, 166);
+  //abajo
+  triangle(width/2, height/2, 200, 500, 400, 500);
+  triangle(width/2, height/2, 600, 500, 800, 500);
+  triangle(width/2, height/2, 200, 0, 400, 0);
+  triangle(width/2, height/2, 600, 00, 800, 0);
+  filter(BLUR, 2);
+  popMatrix();
+  
+  textSize(30);
+  fill(255);
+  text("Es tu turno jugador:\r  " + turno, width/2, height/2-220);
+  textSize(22);
+  text("Vida: \r" + j1.vida, 150,100);
+  text("Vida: \r" + j2.vida, 820,100);
+  text("Ataque con clic", width/2, height/2 + 180);
+
+  switch(display1) {
+  case 1:
+    ojo.ojo();
+    break;
+
+  case 2: 
+    boca.boca();
+    break;
+
+  case 3: 
+    oreja.oreja();
+    break;
+
+  case 4: 
+    cerebro.cerebro();
+    break;
+
+  case 5: 
+    mano.mano();
+    break;
+
+  case 6: 
+    nariz.nariz();
+    break;
+  }
+
+  switch(display2) {
+  case 1:
+    translate(600, 0);
+    ojo.ojo();
+    break;
+
+  case 2: 
+    translate(600, 0);
+    boca.boca();
+    break;
+
+  case 3: 
+    translate(600, 0);
+    oreja.oreja();
+    break;
+
+  case 4: 
+    translate(600, 0);
+    cerebro.cerebro();
+    break;
+
+  case 5: 
+    translate(600, 0);
+    mano.mano();
+    break;
+
+  case 6: 
+    translate(600, 0);
+    nariz.nariz();
+    break;
+  }
+}
+
+
+void ataque() {
+
+  if (turno == 1) {
+    j2.vida -= j1.ataque;
+  }
+
+  if (turno == 2) {
+    j1.vida -= j2.ataque;
+  }
+
+  if (j1.vida <= 0 || j2.vida <=0)
+  {
+    pant = 3;
+  }
+}
+
+
+void ganador() {
+
+  background(100, 100, 200);
+  fill(255);
+  text("Presiona A para regresar", width/2, height/2+100);
+
+  
+   if ((j1.vida == 0) && (j2.vida > 0)) {
+   textSize(30);
+   text("¡JUGADOR 2 HAS GANADO!", width/2, height/2-100);
+   }
+   else{
+   textSize(30);
+   text("¡JUGADOR 1 HAS GANADO!", width/2, height/2-100);
+   }
+   
+  
+
+  switch(key) {
+
+  case 'a' | 'A':
+    pant = 0;
+
+    key = 'y' | 'Y';
+    break;
+  }
+
+
+  sel1 = false;
+  sel2 = false;
+
+  ojo = new Personaje(500, 200);
+  boca = new Personaje (600, 300);
+  oreja = new Personaje (600, 200);
+  mano = new Personaje (400, 200);
+  nariz = new Personaje(400, 200);
+  cerebro = new Personaje (700, 300);
+}
+
+
+
+class Personaje{
+  int vida;
+  int ataque;
+  
+Personaje(int vida_, int ataque_){
+  vida = vida_;
+  ataque = ataque_;
+}
+
+void ojo(){
+  
+   noStroke();
+  
+   beginShape();
+   fill(99,55,0);
+   vertex(276.3, 196.1);
+   bezierVertex(263.3, 181.5, 244.5, 172.4, 223.4, 172.4);
+   bezierVertex(203.5, 172.4, 185.4, 180.7, 172.6, 193.9);
+   bezierVertex(172.5, 195.2, 172.4, 196.6, 172.4, 198);
+   bezierVertex(172.4, 222.6, 195.7, 242.5, 224.4, 242.5);
+   bezierVertex(253.1, 242.5, 276.4, 222.6, 276.4, 198);
+   bezierVertex(276.4, 197.3, 276.4, 196.7, 276.3, 196.1);
+   endShape();
+   
+   beginShape();
+   fill(142,84,0);
+   vertex(191, 180.2);
+   bezierVertex(187.2, 194.8, 198.6, 211.5, 217.3, 218.1);
+   bezierVertex(236.8, 225, 256.9, 218.3, 262.2, 203.3);
+   bezierVertex(264.6, 196.5, 263.5, 189.2, 259.9, 182.5);
+   bezierVertex(249.2, 176.1, 236.8, 172.4, 223.4, 172.4);
+   bezierVertex(211.8, 172.3, 200.8, 175.2, 191, 180.2);
+   endShape();
+   
+   beginShape();
+   fill(0);
+   vertex(215.3, 172.8);
+   bezierVertex(214, 179.7, 219.5, 187.6, 228.5, 191.1);
+   bezierVertex(238.3, 194.9, 248.6, 192.1, 251.5, 184.8);
+   bezierVertex(252.3, 182.7, 252.4, 180.5, 252, 178.3);
+   bezierVertex(243.3, 174.5, 233.6, 172.3, 223.5, 172.3);
+   bezierVertex(220.7, 172.3, 218, 172.5, 215.3, 172.8);
+   endShape();
+   
+   beginShape();
+   fill(65,0,6);
+   vertex(246.9, 341.7);
+   bezierVertex(249.9, 355.8, 256.5, 358.6, 258.8, 379.5);
+   bezierVertex(258.8, 379.5, 259, 387.9, 261.5, 386.5);
+   bezierVertex(267, 383.5, 276, 385, 278.1, 383.2);
+   bezierVertex(280.2, 381.3, 277.5, 373.6, 272, 376.1);
+   bezierVertex(265.4, 379, 266.7, 369, 265.5, 358.7);
+   bezierVertex(265, 354.3, 264.2, 350.2, 262, 339.2);
+   vertex(258.5, 340.1);
+   bezierVertex(256.1, 340.7, 253.7, 341.2, 251.3, 341.4);
+   vertex(246.9, 341.7);
+   endShape();
+   
+   beginShape();
+   fill(247,245,210);
+   vertex(240.5, 311.8);
+   bezierVertex(241.9, 318.5, 247.2, 343, 246.9, 341.6);
+   vertex(251.2, 341.2);
+   bezierVertex(253.6, 341, 256.1, 340.6, 258.4, 339.9);
+   vertex(261.9, 339);
+   bezierVertex(261.9, 339, 257.2, 317, 254.3, 306.8);
+   bezierVertex(249.9, 308.9, 245.3, 310.6, 240.5, 311.8);
+   endShape();
+   
+   beginShape();
+   fill(180,16,17);
+   vertex(241.2, 315.5);
+   bezierVertex(240.9, 314, 240.6, 312.8, 240.4, 311.8);
+   bezierVertex(240.5, 311.8, 240.6, 311.8, 240.7, 311.7);
+   bezierVertex(235.2, 313.1, 229.4, 313.8, 223.5, 313.8);
+   bezierVertex(220.1, 313.8, 216.7, 313.5, 213.4, 313.1);
+   bezierVertex(211.8, 320.6, 206.9, 343.5, 207.1, 342.2);
+   bezierVertex(205.3, 351, 202, 355.4, 199.3, 362.4);
+   bezierVertex(202.2, 362.4, 205.2, 362.2, 208.2, 361.6);
+   bezierVertex(225.6, 358.2, 228.7, 361.3, 235.5, 356);
+   bezierVertex(241.1, 351.7, 234.8, 331.8, 241.2, 315.5);
+   endShape();
+   
+   beginShape();
+   fill(247,245,210);
+   vertex(352.9, 147.4);
+   bezierVertex(347.7, 144.5, 338.4, 141.2, 337, 152.4);
+   bezierVertex(335.6, 163.6, 346.3, 155.1, 345.9, 168.1);
+   bezierVertex(345.7, 176.4, 337.8, 183.2, 333.9, 193.9);
+   bezierVertex(331.8, 199.6, 325.1, 199.3, 321.9, 198.6);
+   bezierVertex(313, 196.5, 302.7, 202.7, 299, 209.5);
+   bezierVertex(296.4, 214.2, 291.8, 216.3, 289.2, 217.1);
+   bezierVertex(290.7, 220.8, 291.8, 224.6, 292.6, 228.5);
+   bezierVertex(303.9, 229.8, 328.9, 213.4, 346.2, 202.7);
+   bezierVertex(364.3, 191.5, 358.1, 150.3, 352.9, 147.4);
+   endShape();
+   
+   beginShape();
+   fill(180,16,17);
+   vertex(152.9, 238.1);
+   bezierVertex(153.1, 235.4, 153.4, 232.8, 153.9, 230.3);
+   bezierVertex(153.6, 230.2, 153.5, 230.1, 153.5, 230.1);
+   bezierVertex(153.5, 230.1, 152.9, 233.4, 151.3, 238);
+   bezierVertex(151.9, 238.1, 152.4, 238.1, 152.9, 238.1);
+   endShape();
+   
+   beginShape();
+   fill(247,245,210);
+   vertex(72, 189.6);
+   bezierVertex(76.2, 185.3, 84.1, 179.5, 88.7, 189.9);
+   bezierVertex(93.2, 200.3, 80.6, 195.2, 84.7, 207.5);
+   bezierVertex(87.3, 215.4, 96.8, 219.6, 103.6, 228.7);
+   bezierVertex(107.2, 233.5, 113.6, 231.4, 116.4, 229.7);
+   bezierVertex(124.3, 225.1, 135.9, 228.1, 141.4, 233.5);
+   bezierVertex(145.2, 237.3, 150.2, 238, 152.9, 238);
+   bezierVertex(152.6, 241.9, 152.5, 245.9, 152.9, 249.9);
+   bezierVertex(142.4, 254.4, 113.8, 245.8, 94.1, 240.5);
+   bezierVertex(73.7, 235.1, 67.8, 193.9, 72, 189.6);
+   endShape();
+   
+   beginShape();
+   fill(180,16,17);
+   vertex(199.1, 309.5);
+   bezierVertex(174.1, 300.3, 155.7, 277.5, 153.1, 250);
+   bezierVertex(153, 249.8, 152.9, 249.8, 152.9, 250);
+   bezierVertex(150.8, 250.9, 147.9, 251.3, 144.5, 251.2);
+   bezierVertex(144.1, 251.8, 143.7, 252.4, 143.2, 253);
+   bezierVertex(135.1, 263.6, 143.5, 281.2, 120.2, 304.5);
+   bezierVertex(96.9, 327.8, 82.6, 357.3, 67.1, 354.5);
+   bezierVertex(51.6, 351.7, 47.9, 361.3, 40.1, 346.7);
+   bezierVertex(40.1, 346.7, 37.9, 352.3, 49.4, 362.2);
+   bezierVertex(60.9, 372.1, 57.5, 363.8, 58.4, 370.3);
+   bezierVertex(59.3, 376.8, 64, 364.4, 74.8, 368.1);
+   bezierVertex(85.7, 371.8, 81.3, 366.9, 97.8, 367.5);
+   bezierVertex(114.2, 368.1, 103.1, 371.5, 117, 369.1);
+   bezierVertex(130.9, 366.7, 143.1, 371.3, 158.3, 363.8);
+   bezierVertex(167.7, 359.2, 177.7, 360.7, 188.1, 361.8);
+   bezierVertex(188.2, 360.9, 188.3, 360, 188.4, 359.1);
+   bezierVertex(188.9, 354.7, 189.7, 350.6, 191.9, 339.6);
+   vertex(191.9, 339.6);
+   bezierVertex(192.1, 339.7, 196.2, 320.4, 199.1, 309.5);
+   vertex(199.1, 309.5);
+   endShape();
+   
+   beginShape();
+   fill(247,245,210);
+   vertex(276.3, 196.1);
+   bezierVertex(276.3, 196.7, 276.4, 197.3, 276.4, 198);
+   bezierVertex(276.4, 222.6, 253.1, 242.5, 224.4, 242.5);
+   bezierVertex(195.7, 242.5, 172.4, 222.6, 172.4, 198);
+   bezierVertex(172.4, 196.6, 172.5, 195.3, 172.6, 193.9);
+   bezierVertex(160.3, 206.6, 152.7, 224, 152.7, 243.1);
+   bezierVertex(152.7, 282.2, 184.4, 313.9, 223.5, 313.9);
+   bezierVertex(262.6, 313.9, 294.3, 282.2, 294.3, 243.1);
+   bezierVertex(294.2, 225, 287.5, 208.6, 276.3, 196.1);
+   endShape();
+   
+   beginShape();
+   fill(65,0,6);
+   vertex(207.1, 342.3);
+   bezierVertex(204.1, 356.4, 197.5, 359.2, 195.2, 380.1);
+   bezierVertex(195.2, 380.1, 195, 388.5, 192.5, 387.1);
+   bezierVertex(187, 384.1, 178, 385.6, 175.9, 383.8);
+   bezierVertex(173.8, 381.9, 176.5, 374.2, 182, 376.7);
+   bezierVertex(188.6, 379.6, 187.3, 369.6, 188.5, 359.3);
+   bezierVertex(189, 354.9, 189.8, 350.8, 192, 339.8);
+   vertex(195.5, 340.7);
+   bezierVertex(197.9, 341.3, 200.3, 341.8, 202.7, 342);
+   vertex(207.1, 342.3);
+   endShape();
+   
+   beginShape();
+   fill(26,99,154);
+   vertex(192.1, 339.7);
+   bezierVertex(192.1, 339.7, 196.2, 320.4, 199.1, 309.6);
+   bezierVertex(199.1, 309.6, 199.1, 309.6, 199.1, 309.6);
+   bezierVertex(182.4, 303.5, 168.7, 291.2, 160.6, 275.6);
+   bezierVertex(158.5, 276, 157, 276.7, 156.1, 277.7);
+   bezierVertex(156.1, 277.7, 155.1, 280.2, 156.7, 287.6);
+   bezierVertex(158.3, 294.8, 176.3, 354.4, 189.6, 352.1);
+   bezierVertex(190.2, 349.1, 190.9, 345.3, 192.1, 339.7);
+   vertex(192.1, 339.7);
+   endShape();
+   
+   beginShape();
+   fill(26,99,154);
+   vertex(223.5, 313.9);
+   bezierVertex(220.1, 313.9, 216.7, 313.7, 213.4, 313.2);
+   bezierVertex(212.2, 319, 209, 333.8, 207.7, 339.8);
+   bezierVertex(215.6, 332.5, 223.3, 323.2, 228.5, 313.8);
+   bezierVertex(226.8, 313.8, 225.2, 313.9, 223.5, 313.9);
+   endShape();
+   
+   beginShape();
+   fill(247,245,210);
+   vertex(213.4, 313.1);
+   bezierVertex(208.5, 312.4, 203.7, 311.2, 199.1, 309.5);
+   bezierVertex(196.2, 320.4, 192.1, 339.6, 192.1, 339.6);
+   vertex(195.6, 340.5);
+   bezierVertex(198, 341.1, 200.4, 341.6, 202.8, 341.8);
+   vertex(207.1, 342.2);
+   bezierVertex(206.8, 343.5, 211.7, 320.7, 213.4, 313.1);
+   endShape();
+   
+   beginShape();
+   
+   vertex(227.1, 176.8);
+   bezierVertex(225.2, 176.5, 225.5, 173.7, 227.4, 173.8);
+   bezierVertex(228.7, 173.9, 230.1, 174, 231.4, 174.2);
+   bezierVertex(234.4, 174.8, 231.1, 177.5, 227.1, 176.8);
+   endShape();
+   
+   beginShape();
+   fill(247,221,35);
+   vertex(199.1, 309.5);
+   bezierVertex(199.8, 309.7, 200.5, 310, 201.1, 310.2);
+   bezierVertex(190.3, 306.6, 180.7, 300.5, 173, 292.6);
+   bezierVertex(174.5, 297.5, 185.4, 333.3, 191, 334.5);
+   bezierVertex(191.6, 334.6, 192.4, 334.6, 193.2, 334.3);
+   bezierVertex(194.7, 327.8, 197.1, 316.8, 199.1, 309.5);
+   endShape();
+   
+   
+   stroke(255);
+   line(172.7, 203.7, 190.1, 188.3);
+   line(175.9, 213.5, 192.6, 198.3);
+   line(183.1, 224.5, 199, 207.1);
+   line(216.2, 242, 220.9, 219.1);
+   line(204.9, 211.7, 190.3, 231.5);
+   line(212.1, 216, 202.3, 238.2);
+   line(229.7, 220.8, 231.5, 242.1);
+   line(237.9, 220.4, 244.8, 238.8);
+   line(248, 217.9, 256.3, 233.1);
+   line(256.2, 212.1, 266.1, 224.3);
+   line(260.5, 206.9, 272.4, 215.3);
+   line(263.4, 197.9, 275.9, 202.8);
+   line(262.9, 189.9, 270.4, 190.2);
+}
+
+
+
+
+void boca(){
+ noStroke();
+  
+   beginShape();
+   fill(158,16,22);
+   vertex(249.5, 253.3);
+   bezierVertex(246.6, 253.1, 240.9, 251.5, 237.7, 251.4);
+   bezierVertex(234.4, 255.6, 231.7, 258.8, 231.7, 258.8);
+   bezierVertex(230.2, 256.7, 229, 254.4, 228, 252);
+   bezierVertex(220.4, 253.3, 204.2, 264.4, 204.2, 264.4);
+   bezierVertex(184.3, 240, 166.4, 242.2, 152.7, 248.2);
+   bezierVertex(150.7, 252.1, 147.3, 258.4, 145.9, 260.7);
+   bezierVertex(143.9, 259.6, 143.2, 257, 141.1, 255.8);
+   bezierVertex(134.8, 262.7, 134.3, 271.2, 128.3, 299.3);
+   bezierVertex(99.6, 288.6, 89.6, 240.7, 63.3, 221.7);
+   bezierVertex(57.7, 217.7, 66.5, 217.1, 71.3, 214.7);
+   bezierVertex(128.7, 186.7, 123.6, 161.6, 175, 179.7);
+   bezierVertex(224.3, 197, 233.3, 147, 268.7, 178.4);
+   bezierVertex(292, 199.1, 310.9, 210.4, 315, 211.4);
+   bezierVertex(319.1, 212.4, 318.9, 217.2, 308.3, 224.4);
+   bezierVertex(295.9, 232.8, 283.6, 281.1, 256, 297.4);
+   bezierVertex(255.9, 297.5, 255.7, 297.6, 255.6, 297.6);
+   vertex(255.6, 297.6);
+   bezierVertex(259.5, 283.1, 258.4, 270.1, 255.9, 262);
+   bezierVertex(255.9, 261.9, 253.9, 253.7, 249.5, 253.3);
+   endShape();
+   
+   beginShape();
+   fill(0);
+   vertex(90, 243.2);
+   bezierVertex(90, 243.2, 114.7, 234.3, 138.2, 219.7);
+   bezierVertex(161.7, 205.1, 164.7, 223.9, 195.7, 220.6);
+   bezierVertex(226.7, 217.3, 217.7, 206.3, 243.9, 216.7);
+   bezierVertex(270.1, 227.1, 267.3, 233.6, 286.6, 236.3);
+   endShape();
+  
+  
+   beginShape();
+   fill(255);
+   vertex(276.2, 234.1);
+   bezierVertex(276.2, 234.1, 257.4, 240.1, 246.3, 239.6);
+   vertex(245.6, 225.5);
+   bezierVertex(245.6, 225.5, 251.4, 224.2, 256, 224.2);
+   bezierVertex(260.6, 224.2, 276.2, 234.1, 276.2, 234.1);
+   endShape();
+   
+   beginShape();
+   
+   vertex(223.1, 224.8);
+   bezierVertex(223.1, 224.8, 222.7, 245.6, 231.7, 258.9);
+   bezierVertex(231.7, 258.9, 241.8, 246.8, 246.3, 239.7);
+   vertex(245.6, 225.6);
+   bezierVertex(245.6, 225.5, 232.5, 216.7, 223.1, 224.8);
+   endShape();
+   
+   beginShape();
+   vertex(190.3, 224.2);
+   vertex(190.3, 241.5);
+   bezierVertex(190.3, 241.5, 191.9, 244.5, 195.5, 244.3);
+   bezierVertex(199.1, 244.1, 220.7, 246.4, 224.2, 240.9);
+   bezierVertex(224.2, 240.9, 222.3, 229.3, 223, 224.8);
+   bezierVertex(223.1, 224.8, 206.3, 217.5, 190.3, 224.2);
+   endShape();
+  
+   beginShape();
+   vertex(157, 225.6);
+   vertex(157, 239.3);
+   bezierVertex(157, 239.3, 156.9, 241.8, 158.8, 242);
+   bezierVertex(160.7, 242.1, 181.7, 246.9, 190.4, 241.4);
+   vertex(190.4, 224.1);
+   bezierVertex(190.3, 224.2, 177.5, 213.9, 157, 225.6);
+   endShape();
+   
+   beginShape();
+   vertex(137.5, 227.1);
+   bezierVertex(137.5, 227.1, 132.6, 249.3, 145.7, 260.4);
+   bezierVertex(145.7, 260.4, 156.1, 243.9, 156.9, 237.6);
+   vertex(157, 225.5);
+   bezierVertex(157, 225.6, 147.3, 219.2, 137.5, 227.1);
+   endShape();
+  
+   beginShape();
+   vertex(136.7, 237.4);
+   bezierVertex(136.7, 237.4, 134.6, 240.8, 132.1, 240.1);
+   bezierVertex(129.6, 239.4, 110.1, 235.9, 110.1, 235.9);
+   vertex(128.6, 225.5);
+   bezierVertex(128.6, 225.5, 135.8, 225.9, 137.4, 227.1);
+   bezierVertex(137.5, 227.1, 136.7, 232.6, 136.7, 237.4);
+   endShape();
+   
+   beginShape();
+   fill(196,18,25);
+   vertex(152.7, 248.1);
+   bezierVertex(149.5, 254.3, 145.6, 260.4, 145.6, 260.4);
+   bezierVertex(143.8, 258.8, 142.3, 257.1, 141.1, 255.2);
+   bezierVertex(132.7, 264.3, 131.1, 281.6, 126.1, 311.1);
+   bezierVertex(120.1, 347, 111.7, 347.6, 111.7, 347.6);
+   bezierVertex(111.8, 347.7, 112, 347.8, 112.1, 347.9);
+   bezierVertex(134.7, 353.4, 160.9, 347.7, 175.4, 309.8);
+   bezierVertex(184.1, 287.1, 193.9, 273, 203.5, 264.4);
+   vertex(203.5, 263.3);
+   bezierVertex(183.7, 238.8, 166.4, 242.2, 152.7, 248.1);
+   endShape();
+   
+   beginShape();
+   fill(255,255,0);
+   vertex(151.4, 371.4);
+   bezierVertex(146.2, 375, 140.8, 380.2, 148, 383.5);
+   bezierVertex(159.8, 389, 179.8, 379.5, 179.8, 379.5);
+   vertex(180.3, 365.7);
+   vertex(179, 365.8);
+   bezierVertex(168.9, 369, 159.8, 370.8, 151.4, 371.4);
+   endShape();
+   
+   beginShape();
+   fill(255,255,0);
+   vertex(283.3, 385.3);
+   bezierVertex(283.3, 385.3, 288.3, 382.3, 286.3, 375.8);
+   bezierVertex(284.3, 369.3, 269, 374, 269, 374);
+   vertex(268, 330.5);
+   vertex(252.6, 335.5);
+   bezierVertex(254.3, 355.3, 256.3, 376.6, 257.5, 379.8);
+   bezierVertex(259.8, 385.8, 283.3, 385.3, 283.3, 385.3);
+   endShape();
+  
+   beginShape();
+   fill(221,20,28);
+   vertex(250.3, 253.3);
+   bezierVertex(247.9, 252.9, 243.5, 251.6, 237.7, 251.4);
+   bezierVertex(234.4, 255.6, 231.7, 258.8, 231.7, 258.8);
+   bezierVertex(230.2, 256.7, 229, 254.4, 228, 252);
+   bezierVertex(212.3, 254.7, 191.8, 267, 175.4, 309.8);
+   bezierVertex(148.3, 380.8, 80.2, 339, 70.8, 321.5);
+   bezierVertex(70.8, 321.5, 101.5, 403.8, 200.2, 357.4);
+   bezierVertex(275, 322.2, 259.4, 255, 250.3, 253.3);
+   endShape();
+   
+   beginShape();
+   fill(0);
+   vertex(266.4, 289.2);
+   bezierVertex(263.2, 292.4, 259.7, 295.2, 256, 297.4);
+   bezierVertex(255.9, 297.5, 255.7, 297.6, 255.6, 297.6);
+   vertex(255.6, 297.6);
+   bezierVertex(255.6, 297.5, 255.7, 297.4, 255.7, 297.3);
+   bezierVertex(254.5, 301.8, 252.9, 306.4, 250.6, 311.1);
+   bezierVertex(251.4, 321.6, 252.6, 336, 252.6, 335.6);
+   vertex(268, 330.6);
+   vertex(267, 288.9);
+   vertex(266.4, 289.2);
+   endShape();
+}
+
+
+
+
+
+
+void oreja(){
+  
+  noStroke();
+  fill(191, 10, 29);
+  ellipse(142.4, 334.1, 51, 51);
+
+  beginShape();
+  fill(235, 197, 135);
+  vertex(211.9, 154.6);
+  bezierVertex(197, 124.4, 164.5, 120.4, 142.6, 135.7);
+  bezierVertex(120.7, 151, 109.8, 183.5, 109.8, 183.5);
+  bezierVertex(103.8, 206.7, 120.4, 220, 108, 233.3);
+  bezierVertex(103.4, 238.3, 99.8, 245.6, 102.8, 252.5);
+  bezierVertex(105.8, 259.5, 111.1, 261.5, 113.1, 263.4);
+  bezierVertex(125.5, 275.8, 108.1, 299.3, 118.8, 317.5);
+  bezierVertex(124, 310.1, 132.7, 305.2, 142.4, 305.2);
+  bezierVertex(149.3, 305.2, 155.6, 307.6, 160.5, 311.6);
+  bezierVertex(166.8, 293.8, 172.1, 268.8, 187.6, 253.1);
+  bezierVertex(217.5, 222.9, 226.8, 184.8, 211.9, 154.6);
+  endShape();
+
+  beginShape();
+  fill(174, 61, 34);
+  vertex(136.3, 165.9);
+  bezierVertex(136.3, 165.9, 142.6, 173.5, 146.9, 189.1);
+  bezierVertex(151.2, 204.7, 155.2, 215.3, 156.5, 231.2);
+  bezierVertex(157.8, 247.1, 151.2, 320.8, 139.9, 299.9);
+  bezierVertex(128.6, 279, 141.2, 248.1, 141.2, 248.1);
+  endShape();
+
+  fill(174, 61, 34);
+  ellipse(143, 245, 8.5, 5.3);
+
+  fill(15, 50, 88);
+  ellipse(142.6, 334.3, 40, 40);
+
+  beginShape();
+  fill(191, 10, 29);
+  vertex(212.9, 381.3);
+  bezierVertex(210.9, 379.5, 200.3, 382.1, 198.6, 381);
+  bezierVertex(197.5, 380.2, 189.5, 353.6, 184.8, 332.2);
+  vertex(180.2, 332.2);
+  bezierVertex(184.2, 355.9, 187.3, 382.3, 188.7, 384.6);
+  bezierVertex(191.2, 388.6, 204.6, 387.1, 207.1, 387.1);
+  bezierVertex(209.6, 387.1, 214.9, 383.2, 212.9, 381.3);
+  endShape();
+
+  beginShape();
+  fill(191, 10, 29);
+  vertex(70.9, 381.3);
+  bezierVertex(72.9, 379.5, 83.5, 382.1, 85.2, 381);
+  bezierVertex(86.3, 380.2, 94.3, 353.6, 99, 332.2);
+  vertex(103.6, 332.2);
+  bezierVertex(99.6, 355.9, 96.5, 382.3, 95.1, 384.6);
+  bezierVertex(92.6, 388.6, 79.2, 387.1, 76.7, 387.1);
+  bezierVertex(74.2, 387.1, 68.9, 383.2, 70.9, 381.3);
+  endShape();
+
+  beginShape();
+  fill(255);
+  vertex(147.5, 329.4);
+  vertex(154.6, 330.5);
+  bezierVertex(155.5, 330.6, 155.9, 331.8, 155.2, 332.4);
+  vertex(150, 337.4);
+  bezierVertex(149.7, 337.7, 149.6, 338, 149.7, 338.4);
+  vertex(150.9, 345.5);
+  bezierVertex(151.1, 346.4, 150.1, 347.1, 149.3, 346.7);
+  vertex(143, 343.3);
+  bezierVertex(142.7, 343.1, 142.3, 343.1, 142, 343.3);
+  vertex(135.6, 346.6);
+  bezierVertex(134.8, 347, 133.8, 346.3, 134, 345.4);
+  vertex(135.3, 338.3);
+  bezierVertex(135.4, 337.9, 135.2, 337.6, 135, 337.3);
+  vertex(129.9, 332.3);
+  bezierVertex(129.2, 331.7, 129.6, 330.5, 130.5, 330.4);
+  vertex(137.6, 329.4);
+  bezierVertex(138, 329.3, 138.3, 329.1, 138.4, 328.8);
+  vertex(141.6, 322.4);
+  bezierVertex(142, 321.6, 143.2, 321.6, 143.6, 322.4);
+  vertex(146.7, 328.9);
+  bezierVertex(146.8, 329.1, 147.1, 329.3, 147.5, 329.4);
+  endShape();
+
+  beginShape();
+  fill(174, 61, 34);
+  vertex(178.5, 193.6);
+  bezierVertex(178.5, 193.6, 182.5, 179, 174.5, 175.5);
+  bezierVertex(166.5, 172, 169.6, 166.7, 163, 166.7);
+  endShape();
+
+  beginShape();
+  fill(27, 73, 146);
+  vertex(117.4, 281.4);
+  bezierVertex(112.8, 283.7, 102.1, 291.2, 102.5, 309.5);
+  bezierVertex(102.6, 314.1, 101, 322.6, 98.9, 332.2);
+  bezierVertex(98.9, 332.2, 98.9, 332.2, 98.9, 332.2);
+  vertex(103.5, 332.2);
+  bezierVertex(106.4, 314.6, 109.9, 298.6, 113.4, 295.2);
+  bezierVertex(114.3, 294.3, 115.1, 293.4, 115.8, 292.6);
+  bezierVertex(116.4, 288.8, 117.1, 285, 117.4, 281.4);
+  endShape();
+
+
+  beginShape();
+  fill(23, 73, 146);
+  vertex(170.4, 282.3);
+  bezierVertex(170.4, 282.3, 170.4, 282.3, 170.4, 282.3);
+  bezierVertex(169.2, 285.3, 168.2, 288.2, 167.2, 291.1);
+  bezierVertex(167.7, 292.4, 168.7, 293.7, 170.2, 295.2);
+  bezierVertex(173.7, 298.6, 177.1, 314.6, 180.1, 332.2);
+  vertex(184.7, 332.2);
+  vertex(184.7, 332.2);
+  bezierVertex(182.6, 322.6, 181.1, 314.1, 181.1, 309.5);
+  bezierVertex(181.4, 294.8, 170.4, 282.3, 170.4, 282.3);
+  endShape();
+}
+
+
+
+
+void cerebro(){
+ noStroke();
+   beginShape();
+   fill(152,208,0); 
+   vertex(181.1, 329.8);
+   bezierVertex(181.2, 329.8, 181.2, 329.8, 181.3, 329.8);
+   bezierVertex(178.7, 330, 176.3, 329.8, 174.1, 329.3);
+   bezierVertex(150.4, 323.9, 158.4, 329, 146.6, 331.9);
+   bezierVertex(140.3, 333.4, 132, 328.3, 127.7, 320.3);
+   bezierVertex(126.6, 323, 125.5, 327.3, 124.8, 333.7);
+   bezierVertex(123.1, 349.1, 93.9, 359.1, 85.5, 374.5);
+   bezierVertex(77.1, 389.9, 52, 390.3, 51.6, 398);
+   bezierVertex(51.2, 405.7, 53.9, 405.9, 58.9, 404.4);
+   bezierVertex(63.8, 402.9, 89.2, 383.7, 108.2, 388.8);
+   bezierVertex(127.2, 393.9, 125.7, 395.2, 138.1, 392.4);
+   bezierVertex(150.5, 389.6, 148.8, 393.9, 157.1, 390.1);
+   bezierVertex(165.4, 386.3, 166.3, 384.1, 173.3, 384.1);
+   bezierVertex(178.1, 384.1, 182.2, 379.3, 188.1, 376.4);
+   bezierVertex(189.2, 353.8, 182.8, 334.3, 181.1, 329.8);
+   endShape();
+   
+   
+   beginShape();
+   //fill(255);
+   vertex(221.2, 313.8);
+   bezierVertex(210.8, 320.1, 198.5, 326.4, 187.6, 328.8);
+   bezierVertex(192.4, 339.4, 194.3, 362.5, 195.8, 374.2);
+   bezierVertex(196.5, 374.2, 197.3, 374.1, 198.1, 374.2);
+   bezierVertex(210.1, 374.8, 209.6, 368.2, 209.4, 366.9);
+   bezierVertex(209.2, 365.6, 213.7, 333.2, 218.2, 326.4);
+   bezierVertex(220.3, 323, 221, 318.1, 221.2, 313.8);
+   endShape();
+   
+   beginShape();
+   vertex(182.5, 329.6);
+   bezierVertex(182.6, 329.6, 182.7, 329.6, 182.8, 329.6);
+   bezierVertex(182.7, 329.6, 182.6, 329.6, 182.5, 329.6);
+   endShape();
+   
+   beginShape();
+   fill(253,133,0);
+   vertex(150.3, 330.6);
+   bezierVertex(149.3, 331, 148.2, 331.4, 146.7, 331.8);
+   bezierVertex(140.4, 333.3, 132.1, 328.2, 127.8, 320.2);
+   bezierVertex(126.7, 322.9, 125.6, 327.2, 124.9, 333.6);
+   bezierVertex(123.2, 349, 94, 359, 85.6, 374.4);
+   bezierVertex(77.2, 389.8, 52.1, 390.2, 51.7, 397.9);
+   bezierVertex(51.3, 405.6, 54, 405.8, 59, 404.3);
+   bezierVertex(63.9, 402.8, 89.3, 383.6, 108.3, 388.7);
+   bezierVertex(110, 389.2, 111.6, 389.6, 113, 390);
+   bezierVertex(116.6, 385.6, 122.9, 377.9, 127.1, 372.5);
+   bezierVertex(133.3, 364.6, 136.1, 357.1, 140.5, 350.5);
+   bezierVertex(143.9, 345.4, 148.7, 337.4, 150.3, 330.6);
+   endShape();
+   
+   beginShape();
+   fill(255,255,0);
+   vertex(150.2, 330.6);
+   bezierVertex(150.2, 330.6, 150.3, 330.6, 150.2, 330.6);
+   bezierVertex(148.6, 337.4, 143.8, 345.4, 140.4, 350.4);
+   bezierVertex(135.9, 357, 133.1, 364.5, 127, 372.4);
+   bezierVertex(122.8, 377.8, 116.5, 385.5, 112.9, 389.9);
+   bezierVertex(127, 393.9, 126.8, 394.7, 138.1, 392.2);
+   bezierVertex(142.1, 391.3, 144.6, 391.1, 146.4, 391.2);
+   bezierVertex(147.6, 389.2, 149.8, 385.7, 153, 382);
+   bezierVertex(158.1, 375.9, 157.5, 371.4, 160.4, 365);
+   bezierVertex(163.3, 358.6, 169.7, 350, 169.7, 343.9);
+   bezierVertex(169.7, 340.5, 171.7, 335, 172.4, 328.8);
+   bezierVertex(153.6, 324.7, 156.7, 327.9, 150.2, 330.6);
+   endShape();
+   
+   
+   beginShape();
+   fill(12,191,177);
+   vertex(187.6, 328.8);
+   bezierVertex(190.8, 336, 192.8, 348.8, 194.1, 359.9);
+   bezierVertex(195.7, 355.4, 197, 350.8, 196.8, 346.8);
+   bezierVertex(196.4, 340.4, 196.8, 333.4, 202.6, 326.1);
+   bezierVertex(203.7, 324.7, 204.7, 323.4, 205.6, 322.3);
+   bezierVertex(199.4, 325.2, 193.2, 327.6, 187.4, 328.8);
+   bezierVertex(187.4, 328.9, 187.5, 328.9, 187.6, 328.8);
+   endShape();
+   
+   beginShape();
+   
+   vertex(181.1, 329.8);
+   bezierVertex(178.6, 329.9, 176.3, 329.8, 174.1, 329.3);
+   bezierVertex(173.5, 329.2, 172.9, 329, 172.3, 328.9);
+   bezierVertex(171.6, 335.1, 169.6, 340.7, 169.6, 344);
+   bezierVertex(169.6, 350.1, 163.2, 358.7, 160.3, 365.1);
+   bezierVertex(157.4, 371.5, 158.1, 376, 152.9, 382.1);
+   bezierVertex(149.7, 385.9, 147.5, 389.3, 146.3, 391.3);
+   bezierVertex(146.3, 391.3, 146.3, 391.3, 146.3, 391.3);
+   bezierVertex(150.3, 391.4, 151.3, 392.6, 157, 389.9);
+   bezierVertex(165.3, 386.1, 166.2, 383.9, 173.2, 383.9);
+   bezierVertex(178, 383.9, 182.1, 379.1, 188, 376.2);
+   bezierVertex(189.2, 353.8, 182.8, 334.4, 181.1, 329.8);
+   endShape();
+   
+   beginShape();
+   fill(255);
+   vertex(183.6, 329.5);
+   bezierVertex(183.9, 329.5, 184.2, 329.4, 184.5, 329.4);
+   bezierVertex(184.2, 329.4, 183.9, 329.5, 183.6, 329.5);
+   endShape();
+   
+   beginShape();
+   fill (0);
+   vertex(181.6, 329.7);
+   bezierVertex(182, 329.7, 182.4, 329.6, 182.7, 329.6);
+   bezierVertex(182.4, 329.7, 182, 329.7, 181.6, 329.7);
+   endShape();
+   
+   beginShape();
+   fill(245, 140, 135);
+   vertex(243.9, 298.2);
+   bezierVertex(243.9, 298.2, 197.8, 334.7, 174.1, 329.3);
+   bezierVertex(150.4, 323.9, 158.4, 329, 146.6, 331.9);
+   bezierVertex(134.8, 334.8, 116.2, 314.3, 129.6, 295.7);
+   bezierVertex(143, 277.1, 135, 280.3, 145, 274.6);
+   bezierVertex(154.9, 268.8, 152, 269.2, 148.5, 262.1);
+   bezierVertex(145, 255.1, 148.2, 248, 159.1, 243.9);
+   bezierVertex(170, 239.7, 171.6, 241.7, 174.8, 233);
+   bezierVertex(178, 224.3, 190.8, 229.2, 193, 223.7);
+   bezierVertex(195.2, 218.2, 203.6, 205.1, 214.1, 208.3);
+   bezierVertex(230.7, 213.3, 230.1, 222.7, 230.1, 222.7);
+   bezierVertex(230.1, 222.7, 238.7, 210.2, 249.3, 212.5);
+   bezierVertex(259.9, 214.8, 260.2, 217.6, 265, 211.9);
+   bezierVertex(269.8, 206.2, 281.6, 205.5, 292.9, 216.7);
+   bezierVertex(304.1, 227.9, 288.1, 227.6, 300.6, 229.8);
+   bezierVertex(313.6, 232.1, 309.2, 252.5, 295.8, 258.3);
+   bezierVertex(287.9, 261.7, 310.2, 274.9, 297.7, 294.8);
+   bezierVertex(290.3, 306.4, 267.3, 307.5, 243.9, 298.2);
+   endShape();
+   
+   beginShape();
+   fill(255,20,35);
+   vertex(295.8, 258.2);
+   bezierVertex(309.2, 252.4, 313.6, 232, 300.6, 229.7);
+   bezierVertex(288.1, 227.5, 304.1, 227.8, 292.9, 216.6);
+   bezierVertex(292.8, 216.5, 292.7, 216.4, 292.6, 216.3);
+   bezierVertex(292.1, 216.3, 291.5, 216.3, 291, 216.3);
+   bezierVertex(251.9, 216.3, 253.5, 249.9, 240.7, 241.3);
+   bezierVertex(227.9, 232.7, 192.4, 235.5, 184.4, 236.2);
+   bezierVertex(176.4, 236.8, 171.9, 240.7, 171.9, 240.7);
+   bezierVertex(171.9, 240.7, 170.6, 240.7, 168.4, 240.7);
+   bezierVertex(166.3, 241.5, 163.4, 242.2, 159.1, 243.9);
+   bezierVertex(148.2, 248.1, 145, 255.1, 148.5, 262.1);
+   bezierVertex(152, 269.1, 154.9, 268.8, 145, 274.6);
+   bezierVertex(142.6, 276, 141.3, 276.9, 140.4, 277.6);
+   bezierVertex(143, 278.8, 145.8, 280, 148.8, 281.3);
+   bezierVertex(245.5, 322, 242.3, 265.3, 254.1, 271.7);
+   bezierVertex(262.9, 276.5, 286.1, 271.5, 297.5, 268.6);
+   bezierVertex(294.8, 263.3, 292.2, 259.7, 295.8, 258.2);
+   endShape();
+   
+   
+   beginShape();
+   fill(209,60,55);
+   vertex(233, 223.6);
+   bezierVertex(233, 223.6, 251.2, 227.4, 247.7, 264.3);
+   endShape();
+   
+   //ojos
+   fill(255);
+   ellipse(267.1, 256, 16.8, 11.3);
+   ellipse(215.6, 270.1, 16.8, 11.3);
+   fill(0);
+   ellipse(217, 269, 2, 2.2);
+   ellipse(265, 256, 2.2, 2.3);
+   
+   beginShape();
+   fill(0);
+   vertex(386.3, 258.1);
+   bezierVertex(384.7, 253.6, 383.3, 251.4, 379.2, 251.2);
+   bezierVertex(379.2, 251.5, 379.2, 251.8, 379.3, 252.1);
+   bezierVertex(379.3, 252.1, 378.9, 254, 375.7, 253.4);
+   bezierVertex(375.7, 253.4, 375.7, 252.9, 375.7, 252.1);
+   bezierVertex(374.4, 253.3, 372.5, 255.8, 374, 259.6);
+   bezierVertex(376.1, 265.1, 381.7, 268.8, 382.5, 273.5);
+   bezierVertex(383.3, 278.1, 388.2, 263.4, 386.3, 258.1);
+   endShape();
+   
+   beginShape();
+   fill(139,83,24);
+   vertex(380.4, 211.6);
+   bezierVertex(382.4, 193.7, 385.5, 180.6, 384.2, 177.6);
+   bezierVertex(382.1, 172.7, 380.1, 163.9, 378, 179.7);
+   bezierVertex(377.1, 186.5, 376.5, 201.1, 376.2, 215.6);
+   bezierVertex(377.5, 215.1, 378.6, 213.4, 380.4, 211.6);
+   endShape();
+   
+   beginShape();
+   fill(139,83,24);
+   vertex(379.1, 225.5);
+   bezierVertex(378, 225.4, 377, 225.2, 375.9, 225.1);
+   bezierVertex(375.6, 240.4, 375.6, 253.4, 375.6, 253.4);
+   bezierVertex(378.8, 254, 379.2, 252.1, 379.2, 252.1);
+   bezierVertex(378.5, 242.9, 378.6, 233.9, 379.1, 225.5);
+   endShape();
+   
+   beginShape();
+   fill(245,140,135);
+   vertex(386.7, 215);
+   bezierVertex(384.4, 215.9, 381.8, 213.5, 388.2, 211.8);
+   bezierVertex(394.6, 210.1, 396.7, 205, 388, 207.1);
+   bezierVertex(379.2, 209.2, 378.4, 216.9, 374.6, 215.6);
+   bezierVertex(370.8, 214.3, 371.2, 193, 368.6, 200.9);
+   bezierVertex(366, 208.8, 371.2, 207.7, 372.9, 216.3);
+   bezierVertex(374.6, 224.8, 371, 220.8, 348.4, 242.1);
+   bezierVertex(327.5, 261.8, 298.9, 262.8, 294.7, 262.8);
+   bezierVertex(295.3, 264.2, 296.3, 265.9, 297.3, 267.9);
+   bezierVertex(354.2, 267.3, 367.2, 223.7, 375.2, 225);
+   bezierVertex(383.3, 226.3, 391.2, 226.5, 392.3, 223.7);
+   bezierVertex(393.4, 220.9, 386.5, 222, 387.6, 220.9);
+   bezierVertex(388.7, 219.8, 397.8, 219.2, 398.9, 215.6);
+   bezierVertex(399.9, 212, 389.1, 214.1, 386.7, 215);
+   endShape();
+   
+   beginShape();
+   fill(245,140,135);
+   vertex(251.5, 360.8);
+   bezierVertex(249.6, 360.8, 245.7, 361.2, 243.4, 363.6);
+   bezierVertex(241.1, 365.9, 240, 322.2, 232.3, 309.2);
+   bezierVertex(231.9, 308.5, 231.5, 307.9, 231.2, 307.4);
+   bezierVertex(229.7, 308.4, 228.1, 309.4, 226.5, 310.5);
+   bezierVertex(226.5, 310.9, 226.6, 311.1, 226.6, 311.1);
+   bezierVertex(226.6, 311.1, 236.2, 335.6, 233.6, 363.4);
+   bezierVertex(233.6, 363.4, 232.7, 368.5, 235.1, 368.3);
+   bezierVertex(237.4, 368.1, 245.8, 369.2, 249.6, 367.2);
+   bezierVertex(253.4, 365.3, 253.4, 360.8, 251.5, 360.8);
+   endShape();
+   
+   beginShape();
+   fill(245,140,135);
+   vertex(135.4, 286.9);
+   bezierVertex(125.6, 284.1, 114.2, 278.9, 104.5, 269.8);
+   bezierVertex(81.9, 248.5, 78.3, 252.5, 80, 244);
+   bezierVertex(81.7, 235.5, 86.8, 236.5, 84.3, 228.6);
+   bezierVertex(81.7, 220.7, 82.2, 242, 78.3, 243.3);
+   bezierVertex(74.4, 244.6, 73.6, 236.9, 64.9, 234.8);
+   bezierVertex(56.1, 232.7, 58.3, 237.8, 64.7, 239.5);
+   bezierVertex(71.1, 241.2, 68.5, 243.6, 66.2, 242.7);
+   bezierVertex(63.9, 241.8, 53, 239.7, 54, 243.3);
+   bezierVertex(55.1, 246.9, 64.2, 247.6, 65.3, 248.6);
+   bezierVertex(66.4, 249.7, 59.5, 248.6, 60.6, 251.4);
+   bezierVertex(61.7, 254.2, 69.6, 254, 77.7, 252.7);
+   bezierVertex(84.5, 251.6, 94.8, 282.4, 131.9, 292.5);
+   bezierVertex(133.4, 290.3, 134.5, 288.5, 135.4, 286.9);
+   endShape();
+   
+   beginShape();
+   fill(245,140,135);
+   vertex(205.7, 378.4);
+   bezierVertex(203.8, 378.4, 199.9, 378.8, 197.6, 381.2);
+   bezierVertex(195.4, 383.4, 194.3, 343.8, 187.5, 328.8);
+   bezierVertex(185.3, 329.3, 183.1, 329.6, 181.1, 329.7);
+   bezierVertex(182.9, 334.6, 190, 356.5, 187.8, 381);
+   bezierVertex(187.8, 381, 186.9, 386.1, 189.3, 385.9);
+   bezierVertex(191.6, 385.7, 200, 386.8, 203.8, 384.8);
+   bezierVertex(207.7, 382.9, 207.7, 378.4, 205.7, 378.4);
+   endShape();
+   
+   beginShape();
+   fill(6, 144, 173);
+   vertex(381.2, 259.4);
+   bezierVertex(381.2, 260.7, 381.8, 263.5, 380.3, 263.9);
+   bezierVertex(378.8, 264.3, 378.6, 261.1, 377.1, 259.8);
+   bezierVertex(376.3, 259.1, 375, 259.5, 374.1, 260);
+   bezierVertex(376.3, 265.3, 381.6, 268.9, 382.5, 273.5);
+   bezierVertex(383.2, 277.1, 386.2, 269.3, 386.7, 263);
+   bezierVertex(383.7, 262, 381.2, 258.2, 381.2, 259.4);
+   endShape();
+}
+
+
+
+
+
+void mano(){
+ stroke(0);
+   
+   beginShape();
+   fill(0,133,62);
+   vertex(107, 300.3);
+   bezierVertex(99.8, 331.1, 97.1, 381.2, 93.8, 377.9);
+   bezierVertex(89.7, 373.8, 83.1, 373.1, 79.8, 373.1);
+   bezierVertex(76.5, 373.1, 76.5, 380.9, 83.1, 384.2);
+   bezierVertex(89.7, 387.5, 104.1, 385.7, 108.2, 386);
+   bezierVertex(112.3, 386.4, 110.8, 377.5, 110.8, 377.5);
+   bezierVertex(108.2, 349.1, 113.3, 321.1, 117.6, 304.2);
+   bezierVertex(117.7, 304.3, 110.5, 301.6, 107, 300.3);
+   endShape();
+   
+   beginShape();
+    fill(234,176,128);
+   vertex(186.5, 249.9);
+   bezierVertex(184.2, 229.4, 181, 223.9, 167.5, 213);
+   bezierVertex(153.9, 202, 152.8, 149, 146.4, 140.3);
+   bezierVertex(140.1, 131.6, 130.3, 122.7, 115.5, 141.2);
+   bezierVertex(100.8, 159.7, 123, 209, 123, 209);
+   bezierVertex(107.7, 208.1, 90.1, 220.8, 90.1, 220.8);
+   bezierVertex(76.8, 222.2, 73.4, 228.3, 73.4, 228.3);
+   bezierVertex(57.5, 243, 73.7, 269, 80.3, 275.9);
+   bezierVertex(86.9, 282.8, 95.6, 280.5, 95.6, 280.5);
+   bezierVertex(99.8, 301.8, 117.6, 305.8, 124.4, 306.6);
+   vertex(113.2, 295.4);
+   bezierVertex(110, 292.2, 112.3, 286.9, 116.7, 286.9);
+   vertex(162.9, 286.9);
+   bezierVertex(164.6, 286.9, 165.9, 287.9, 166.5, 289.3);
+   vertex(178.1, 282.1);
+   bezierVertex(184.5, 273.5, 188.8, 270.3, 186.5, 249.9);
+   endShape();
+   
+   beginShape();
+   vertex(131.1, 225.6);
+   bezierVertex(131.1, 225.6, 138, 229.3, 140, 234.8);
+   bezierVertex(142, 240.3, 155.3, 223.8, 143.5, 221.2);
+   bezierVertex(143.5, 221.3, 136, 220.7, 131.1, 225.6);
+   endShape();
+   
+   beginShape();
+   vertex(148.7, 280.7);
+   bezierVertex(148.7, 280.7, 135.1, 268.3, 144.7, 249.6);
+   endShape();
+   
+   beginShape();
+   vertex(166.4, 289.1);
+   bezierVertex(192.4, 278.9, 186, 248.7, 185, 238.3);
+   bezierVertex(183.8, 226.8, 175.2, 217, 167.4, 212.9);
+   bezierVertex(159.6, 208.9, 152.4, 215.2, 137.4, 221.6);
+   bezierVertex(122.4, 227.9, 128.2, 240.9, 138.6, 246.7);
+   bezierVertex(149, 252.5, 162, 238.6, 162, 238.6);
+   endShape();
+   
+   beginShape();
+   
+   vertex(95.4, 280.4);
+   bezierVertex(95.4, 280.4, 100.4, 305, 122.5, 305.8);
+   endShape();
+   
+   beginShape();
+   vertex(113.8, 219.9);
+   bezierVertex(113.8, 219.9, 125.9, 238.6, 124.2, 253.6);
+   endShape();
+   
+   beginShape();
+   
+   vertex(132.3, 251.3);
+   bezierVertex(132.3, 251.3, 127.7, 244.1, 123.4, 246.1);
+   endShape();
+   
+   beginShape();
+  
+   vertex(155, 243.8);
+   bezierVertex(155, 243.8, 156.7, 250.7, 162.5, 246.7);
+   endShape();
+   
+   beginShape();
+   fill(234,176,128);
+   vertex(102.9, 271.5);
+   bezierVertex(102.9, 271.5, 94.8, 291.4, 79.3, 274.4);
+   bezierVertex(65.9, 259.7, 62.1, 237.9, 73.5, 228.3);
+   bezierVertex(85.2, 218.4, 89.9, 221.7, 89.9, 221.7);
+   endShape();
+   
+   beginShape();
+   vertex(138.9, 250.1);
+   bezierVertex(140.6, 269.4, 125.1, 272.6, 110.6, 272.6);
+   bezierVertex(96.1, 272.6, 94.5, 252.4, 89.3, 238.6);
+   bezierVertex(84.1, 224.8, 91.9, 219.3, 91.9, 219.3);
+   bezierVertex(105, 209.4, 123, 208.9, 123, 208.9);
+   bezierVertex(123, 208.9, 106.6, 170.6, 110.5, 152);
+   bezierVertex(114.4, 133.4, 128.5, 128.9, 135.8, 131.5);
+   bezierVertex(143.2, 134.1, 150.3, 137.1, 155.7, 184.7);
+   bezierVertex(156.8, 194.1, 160.3, 203.1, 165.4, 211.5);
+   endShape();
+   
+   beginShape();
+   fill(246,128,38);
+   vertex(162.9, 286.7);
+   vertex(116.7, 286.7);
+   bezierVertex(112.2, 286.7, 110, 292.1, 113.2, 295.2);
+   vertex(140.9, 322.9);
+   bezierVertex(140.9, 322.9, 157.1, 303.6, 165.9, 293.1);
+   bezierVertex(168.1, 290.6, 166.3, 286.7, 162.9, 286.7);
+   endShape();
+   
+   beginShape();
+   fill(255,227,81);
+   vertex(157, 290.6);
+   vertex(122.4, 290.6);
+   bezierVertex(119.1, 290.6, 117.4, 294.6, 119.8, 297);
+   vertex(140.5, 317.7);
+   bezierVertex(140.5, 317.7, 152.6, 303.2, 159.3, 295.4);
+   bezierVertex(160.9, 293.6, 159.5, 290.6, 157, 290.6);
+   endShape();
+   ellipse(139.5, 301.8, 6.2, 6.2);
+   
+   beginShape();
+   
+   vertex(112.3, 331.5);
+   bezierVertex(115.2, 332.6, 115.4, 337.6, 115.4, 337.6);
+   bezierVertex(116.4, 332.1, 114, 327.9, 113.1, 326.6);
+   bezierVertex(112.8, 328.2, 112.6, 329.8, 112.3, 331.5);
+   endShape();
+   
+   beginShape();
+   
+   vertex(177.6, 327.6);
+   bezierVertex(176.6, 329.1, 174.4, 333.2, 175.3, 338.5);
+   bezierVertex(175.3, 338.5, 175.4, 333.6, 178.3, 332.4);
+   bezierVertex(178.1, 330.8, 177.8, 329.2, 177.6, 327.6);
+   endShape();
+   
+   beginShape();
+   fill(0,133,62);
+   vertex(211, 375.9);
+   bezierVertex(207.7, 375.9, 201, 376.6, 197, 380.7);
+   bezierVertex(192.9, 384.8, 191.1, 309.1, 177.8, 286.5);
+   bezierVertex(177.1, 285.3, 176.5, 284.3, 175.9, 283.4);
+   bezierVertex(173.3, 285.1, 170.6, 286.9, 167.7, 288.8);
+   bezierVertex(167.8, 289.4, 167.8, 289.8, 167.8, 289.8);
+   bezierVertex(167.8, 289.8, 184.4, 332.3, 180, 380.3);
+   bezierVertex(180, 380.3, 178.5, 389.2, 182.6, 388.8);
+   bezierVertex(186.7, 388.4, 201.1, 390.3, 207.7, 387);
+   bezierVertex(214.3, 383.6, 214.3, 375.9, 211, 375.9);
+   endShape();
+
+}
+
+
+
+
+void nariz(){
+noStroke();
+   beginShape();
+   fill(235,197,135);
+   vertex(253.7, 280.7);
+   bezierVertex(247.1, 269.2, 233.5, 272.3, 222, 277.8);
+   bezierVertex(225, 276.2, 227.7, 274.9, 229.5, 274.5);
+   bezierVertex(229.5, 274.5, 212, 259.7, 211, 245);
+   bezierVertex(210.9, 243.2, 211, 240.7, 211.2, 237.7);
+   vertex(210, 238);
+   vertex(196.5, 247.5);
+   vertex(199.5, 231);
+   vertex(212, 226.7);
+   bezierVertex(213.8, 204.9, 215.6, 174.8, 197, 176.5);
+   bezierVertex(171.7, 178.8, 195.2, 186.7, 157.3, 211.7);
+   bezierVertex(132.5, 228, 124.6, 233.4, 131.3, 256);
+   bezierVertex(138, 278.7, 137.3, 285.3, 124, 310);
+   bezierVertex(110.7, 334.7, 115.7, 352, 132.3, 361.3);
+   bezierVertex(149, 370.6, 190.6, 371.3, 203, 353.6);
+   bezierVertex(208, 346.4, 207.5, 345, 208.6, 339.7);
+   bezierVertex(208.6, 339.7, 207.7, 345.9, 214, 346.3);
+   bezierVertex(214, 346.3, 237.7, 350.3, 251.3, 343.6);
+   bezierVertex(265, 337, 266.3, 302.7, 253.7, 280.7);
+   endShape();
+   
+   beginShape();
+   fill(0);
+   vertex(211.7, 340.2);
+   bezierVertex(217.8, 338.7, 223, 333.7, 232.3, 327.5);
+   bezierVertex(241.5, 321.3, 230.6, 319.9, 230.6, 319.9);
+   bezierVertex(215, 326, 212.9, 331.3, 210.2, 338.7);
+   bezierVertex(210.1, 338.7, 209.5, 340.7, 211.7, 340.2);
+   endShape();
+   
+   beginShape();
+   
+   fill(224,188,129);
+   vertex(124, 310);
+   bezierVertex(130.2, 298.4, 133.7, 290.8, 134.9, 283.7);
+   bezierVertex(131, 278.2, 124.1, 273.8, 110.3, 281.7);
+   bezierVertex(92.3, 292, 85.7, 311, 116, 338.5);
+   vertex(116.4, 337.4);
+   bezierVertex(116, 329.6, 118.3, 320.5, 124, 310);
+   endShape();
+   
+   
+   beginShape();
+   fill(180,16,17);
+   vertex(203.5, 354);
+   bezierVertex(197.9, 360.2, 188.8, 364.7, 178.9, 367.4);
+   bezierVertex(179.2, 370.9, 179.6, 373.5, 179.6, 373.5);
+   bezierVertex(179.6, 373.5, 161.5, 380.9, 151.3, 396.2);
+   bezierVertex(141.1, 411.4, 133.9, 416.1, 143.5, 417.5);
+   bezierVertex(153.1, 418.8, 173.9, 415.6, 184.1, 400.4);
+   bezierVertex(194.3, 385.2, 220.5, 372.9, 209, 365.4);
+   bezierVertex(205.5, 363, 204.1, 358.4, 203.5, 354);
+   endShape();
+   
+   
+   
+   beginShape();
+   fill(180,16,17);
+   vertex(132.3, 361.3);
+   bezierVertex(130.3, 360.2, 128.5, 359, 126.9, 357.6);
+   bezierVertex(126.8, 357.7, 126.6, 357.8, 126.5, 357.9);
+   bezierVertex(126.5, 357.9, 107, 356.4, 91, 365.4);
+   bezierVertex(75, 374.4, 66.5, 375.4, 74.5, 380.9);
+   bezierVertex(82.5, 386.4, 102.5, 392.9, 118.5, 383.9);
+   bezierVertex(132.9, 375.8, 147.7, 376.2, 154.5, 367.2);
+   bezierVertex(145.7, 366.5, 137.7, 364.4, 132.3, 361.3);
+   endShape();
+   
+   
+   
+   beginShape();
+   fill(247,221,35);
+   vertex(154.9, 213.3);
+   vertex(162.8, 182.9);
+   vertex(147.7, 196.8);
+   vertex(139.4, 214.3);
+   vertex(127.7, 225.2);
+   vertex(130.3, 235.9);
+   bezierVertex(133.2, 228, 141.2, 222.3, 154.9, 213.3);
+   endShape();
+   
+   
+   beginShape();
+   fill(247,221,35);
+   vertex(196.5, 247.5);
+   vertex(199.5, 231);
+   vertex(217, 225);
+   vertex(234, 210.5);
+   vertex(256.5, 203);
+   vertex(232.5, 233);
+   vertex(210, 238);
+   endShape(CLOSE);
+   
+   
+   beginShape();
+   fill(224,188,129);
+   vertex(229.5, 274.5);
+   bezierVertex(229.5, 274.5, 210.3, 284.3, 202.3, 297.7);
+   endShape();
+}
+}
